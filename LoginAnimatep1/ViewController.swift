@@ -84,17 +84,40 @@ class ViewController: UIViewController {
                        completion: nil
         )
         */
+        
+        // login button animate
+        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButt.center.y -= 30
+            self.loginButt.alpha = 1.0
+        }, completion: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         headerLabel.center.x  -= view.bounds.width
         username.center.x -= view.bounds.width
         password.center.x -= view.bounds.width
+        loginButt.center.y += 30
+        loginButt.alpha = 0.0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func login(_ sender: Any) {
+        
+        // animate button width
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButt.bounds.size.width += 80
+        }, completion: nil)
+        
+        // animate button position
+        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButt.center.y += 40
+            self.loginButt.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        }, completion: nil)
+        
+    }
+    
 }
 
