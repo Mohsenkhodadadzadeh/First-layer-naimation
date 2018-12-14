@@ -27,63 +27,7 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        // header label animate
-        UIView.animate(withDuration: 0.5) {
-            
-            self.headerLabel.center.x += self.view.bounds.width
-        }
-        
-        // username text field animate
-        UIView.animate(withDuration: 0.5, delay: 0.7, options: [],
-                       animations: {
-                        self.username.center.x += self.view.bounds.width
-        },
-                       completion: nil
-        )
-        
-        
-        // password text field animate
-        UIView.animate(withDuration: 0.5, delay: 0.9, options: [],
-                       animations: {
-                        self.password.center.x += self.view.bounds.width
-        },
-                       completion: nil
-        )
-        
-        //password text filed with repeat animate
-        /*
-        UIView.animate(withDuration: 0.5, delay: 0.4,
-                       options: .repeat,
-                       animations: {
-                        self.password.center.x += self.view.bounds.width
-        },
-                       completion: nil
-        )
-        */
-        // password test field with couple animate
-        /*
-        UIView.animate(withDuration: 0.5, delay: 0.4,
-                       options: [.repeat, .autoreverse],
-                       animations: {
-                        self.password.center.x += self.view.bounds.width
-        },
-                       completion: nil
-        )
-        */
-        
-        
-        
-        // password text field animate with curveEaseOut
-        /*
-        UIView.animate(withDuration: 0.5, delay: 0.4,
-                       
-                       options: [.repeat, .autoreverse, .curveEaseOut],
-                       animations: {
-                        self.password.center.x += self.view.bounds.width
-        },
-                       completion: nil
-        )
-        */
+      
         
         // login button animate
         UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
@@ -93,9 +37,18 @@ class ViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        headerLabel.center.x  -= view.bounds.width
-        username.center.x -= view.bounds.width
-        password.center.x -= view.bounds.width
+        let flyRight = CABasicAnimation(keyPath: "position.x")
+        flyRight.fromValue = -view.bounds.size.width / 2
+        flyRight.toValue = view.bounds.size.width / 2
+        flyRight.duration = 1.0
+        
+        headerLabel.layer.add(flyRight, forKey: nil)
+        flyRight.beginTime = CACurrentMediaTime() + 0.5
+        
+        username.layer.add(flyRight, forKey: nil)
+        flyRight.beginTime = CACurrentMediaTime() + 0.7
+        flyRight.duration += 0.2
+        password.layer.add(flyRight, forKey: nil)
         loginButt.center.y += 30
         loginButt.alpha = 0.0
     }
